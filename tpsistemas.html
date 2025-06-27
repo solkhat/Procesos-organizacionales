@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Procesos organizacionales</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 90%;
+    }
+    th, td {
+      border: 1px solid #999999;
+      padding: 10px;
+    }
+    th {
+      background-color: #a9f077;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Compra-Pago & Venta-Cobranza</h1>
+
+  <button onclick="mostrarTabla('todos')">Cuadro Comparativo</button>
+  <button onclick="mostrarTabla('compra')">Compra-Pago</button>
+  <button onclick="mostrarTabla('venta')">Venta-Cobranza</button>
+
+  <div id="cuadro"></div>
+
+  <script>
+    const datos = [
+      ["Necesidad", "Identificación de necesidad", "Oportunidad de venta"],
+      ["Orden", "Pedido al proveedor", "Pedido del cliente"],
+      ["Recepción", "Recepción de bienes", "Entrega al cliente"],
+      ["Facturación", "Factura del proveedor", "Factura al cliente"],
+      ["Pago/Cobro", "Pago al proveedor", "Cobro al cliente"]
+    ];
+
+    function mostrarTabla(tipo) {
+      let html = "<table>";
+
+      if (tipo === "todos") {
+        html += "<tr><th>Etapa</th><th>Compra-Pago</th><th>Venta-Cobranza</th></tr>";
+        datos.forEach(fila => {
+          html += `<tr><td>${fila[0]}</td><td>${fila[1]}</td><td>${fila[2]}</td></tr>`;
+        });
+      } else if (tipo === "compra") {
+        html += "<tr><th>Etapa</th><th>Compra-Pago</th></tr>";
+        datos.forEach(fila => {
+          html += `<tr><td>${fila[0]}</td><td>${fila[1]}</td></tr>`;
+        });
+      } else if (tipo === "venta") {
+        html += "<tr><th>Etapa</th><th>Venta-Cobranza</th></tr>";
+        datos.forEach(fila => {
+          html += `<tr><td>${fila[0]}</td><td>${fila[2]}</td></tr>`;
+        });
+      }
+
+      html += "</table>";
+      document.getElementById("cuadro").innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
